@@ -1,26 +1,26 @@
-import React from "react";
+import "../../styles/index.css";
+import React, {Component} from "react";
+import Light from "../Light";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state={color:['red','yellow','green'], activelight: "red"}
+    }
+    render () {
+        const handleChange=(color) => {
+          this.setState({activelight : color})  
+        }
+        return (
+            <div className="App">
+                <div className="container">
+                    {this.state.color.map((color) => {
+                        return <Light color={color} activelight={this.state.activelight} handleChange={handleChange} />;
+                    })}
+                </div>
+            </div>
+        );
+    };
+}
 
-//create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
-};
-
-export default Home;
+export default App;
